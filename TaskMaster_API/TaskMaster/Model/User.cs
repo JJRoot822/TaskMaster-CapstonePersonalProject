@@ -31,4 +31,6 @@ public class User
     [ForeignKey("UserRole")]
     public int UserRoleId { get; set; }
     public UserRole Role { set; get; }
+
+    public string ToString() => string.Format("{0} | {1}, {2} | @{3} | {4} | {5}", UserId, LastName, FirstName, Username, Email, Role.RoleName);
 }
