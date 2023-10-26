@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using TaskMaster.Data.Context;
 using TaskMaster.Model.API.User;
 using TaskMaster.Model.Domain;
+using TaskMaster.Security;
 
 namespace TaskMaster.Controllers;
 
@@ -57,7 +58,7 @@ public class UsersController : ControllerBase
             LastName = apiUser.LastName,
             Email = apiUser.Email,
             Username = apiUser.Username,
-            Password = apiUser.Password,
+            Password = SecurityUtil.HashPassword(apiUser.Password),
             Role = apiUser.Role
         };
 
@@ -68,15 +69,66 @@ public class UsersController : ControllerBase
         return CreatedAtAction(nameof(GetById_IActionResult), new { id = userUserIdd }, user);
     }
 
-    // PUT api/<UsersController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] APIUpdateUser apiUser)
     {
+        if (apiUser.UserId)
+        {
+            return BadRequest();
+        }
+
+        var user = await _context.Users.FindAsync(id);
+
+        if user == null)
+        {
+            return NotFound();
+        }
+
+        user.FirstName = apiUser.FirstName;
+        user.LastName = apiUser.LastName;
+        user.Username = apiUser.Username;
+        user.Email = apiUser.Email;
+        
+        if (!apiUser.Password.IsNullOrEmpty)
+        {
+            user.Password = SecurityUtil.HashPassword(apiUser.Password);
+        }
+        user.Role = apiUser.Role;
+
+        _context.Entry(user).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!UserExists(apiUser.UserId))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return NoContent();
     }
 
     // DELETE api/<UsersController>/5
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
+    }
+
+    private async bool UserExists(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+
+        return user != null;
     }
 }
