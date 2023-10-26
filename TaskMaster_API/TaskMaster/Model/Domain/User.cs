@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace TaskMaster.Model;
+namespace TaskMaster.Model.Domain;
 
 public class User
 {
@@ -22,8 +22,7 @@ public class User
 
     [Required]
     public string Email { set; get; }
-    
-    public string ProfilePicturePath { set; get; }
+
     [Required]
     public string Password { set; get; }
 
@@ -32,5 +31,5 @@ public class User
     public int UserRoleId { get; set; }
     public UserRole Role { set; get; }
 
-    public string ToString() => string.Format("{0} | {1}, {2} | @{3} | {4} | {5}", UserId, LastName, FirstName, Username, Email, Role.RoleName);
+    public override string ToString() => string.Format("{0} | {1}, {2} | @{3} | {4} | {5}", UserId, LastName, FirstName, Username, Email, Role.RoleName);
 }
