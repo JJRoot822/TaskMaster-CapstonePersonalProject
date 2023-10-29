@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace TaskMaster.Model.Domain;
+namespace TaskMaster.Model.Domain.User;
 
 public class User
 {

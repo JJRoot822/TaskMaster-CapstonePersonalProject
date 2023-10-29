@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 
 using TaskMaster.Data.Context;
 using TaskMaster.Model.API.User;
-using TaskMaster.Model.Domain;
+using TaskMaster.Model.Domain.User;
 using TaskMaster.Security;
 
 namespace TaskMaster.Controllers;

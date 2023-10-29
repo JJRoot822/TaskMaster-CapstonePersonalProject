@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using TaskMaster.Model.Domain;
+using TaskMaster.Model.Domain.User;
 
 namespace TaskMaster.Data.Context;
 

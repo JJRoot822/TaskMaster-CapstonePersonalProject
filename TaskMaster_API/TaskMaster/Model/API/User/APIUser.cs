@@ -1,4 +1,4 @@
-﻿using TaskMaster.Model.Domain;
+﻿using TaskMaster.Model.Domain.User;
 
 namespace TaskMaster.Model.API.User;
 
