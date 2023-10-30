@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TaskMaster.Model.Domain.User;
+namespace TaskMaster.Model.Domain.UserData;
 
 public class UserRole
 {

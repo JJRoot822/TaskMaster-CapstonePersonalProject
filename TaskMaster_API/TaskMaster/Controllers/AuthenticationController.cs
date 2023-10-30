@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 using TaskMaster.Data.Context;
 using TaskMaster.Model.API.Authentication;
-using TaskMaster.Model.API.User;
-using TaskMaster.Model.Domain.User;
+using TaskMaster.Model.API.UserData;
+using TaskMaster.Model.Domain.UserData;
 using TaskMaster.Security;
 
 namespace TaskMaster.Controllers;

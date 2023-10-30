@@ -9,10 +9,11 @@ public class APIDocument
     public string Name { get; set; }
     public string Details { get; set; }
     public byte[] DocumentData { get; set; }
+    public string FileExtension { get; set; }
     public int UserId { get; set; }
 public int ProjectId { get; set; }
 
-    public async Document ToDomainDocument()
+    public async Task<Document> ToDomainDocument()
     {
         var document = new Document();
         document.DocumentId = DocumentId;
@@ -20,7 +21,7 @@ public int ProjectId { get; set; }
         document.Details = Details;
         document.ProjectId = ProjectId;
         document.UserId = UserId;
-        document.Path = await  DocumentService.SaveDocument();
+        document.Path = await  DocumentService.SaveDocument(DocumentData, FileExtension);
 
         return document;
     }

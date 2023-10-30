@@ -4,19 +4,14 @@ namespace TaskMaster.Services;
 
 public class DocumentService
 {
-    public static async string SaveDocument(APIDocument document)
+    public static async Task<string> SaveDocument(byte[] documentData, string fileExtension)
     {
-        if (document == null)
+        if (documentData == null)
         {
             return "";
         }
 
-        if (document.DocumentData == null)
-        {
-            return "";
-        }
-
-        string uniqueFileName = string.Format("{0}.{1}", Guid.NewGuid, document.FileExtension);
+        string uniqueFileName = string.Format("{0}.{1}", Guid.NewGuid(), fileExtension);
         string directoryPath = "~/Docs";
 
         if (!Directory.Exists(directoryPath))
@@ -28,7 +23,7 @@ public class DocumentService
 
         try
         {
-            await File.WriteAllBytesAsync(filePath, document.DocumentData);
+            await File.WriteAllBytesAsync(filePath, documentData);
 
             return filePath;
         }

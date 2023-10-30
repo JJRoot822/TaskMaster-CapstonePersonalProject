@@ -1,4 +1,4 @@
-﻿namespace TaskMaster.Model.API.User;
+﻿namespace TaskMaster.Model.API.UserData;
 
 public class APIUserRole
 {

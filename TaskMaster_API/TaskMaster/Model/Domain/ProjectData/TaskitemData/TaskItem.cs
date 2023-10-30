@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TaskMaster.Model.Domain.ProjectData.Taskitem;
+using TaskMaster.Model.Domain.UserData;
+namespace TaskMaster.Model.Domain.ProjectData.TaskitemData;
 
 public class TaskItem
 {
@@ -33,10 +33,11 @@ public class TaskItem
     [ForeignKey("Project")]
     public int ProjectId { get; set; }
 
-    [Required
+    [Required]
         [ForeignKey("User")]
         public int UserId { get; set; }
 
     public User User { get; set; }
     public Project Project { get; set; }
+    public List<TaskItemComment> TaskItemComments { get; set; }
 }

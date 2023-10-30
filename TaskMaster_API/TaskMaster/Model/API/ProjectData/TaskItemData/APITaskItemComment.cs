@@ -1,4 +1,4 @@
-﻿namespace TaskMaster.Model.API.ProjectData.TaskItem;
+﻿namespace TaskMaster.Model.API.ProjectData.TaskItemData;
 
 public class APITaskItemComment
 {

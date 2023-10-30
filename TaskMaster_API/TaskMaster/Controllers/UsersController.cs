@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 using TaskMaster.Data.Context;
-using TaskMaster.Model.API.User;
-using TaskMaster.Model.Domain.User;
+using TaskMaster.Model.API.UserData;
+using TaskMaster.Model.Domain.UserData;
 using TaskMaster.Security;
 
 namespace TaskMaster.Controllers;
@@ -21,16 +20,21 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<APIUser>> GetAllUsers() =>await _context.Users.ToListAsync()
+    public async Task<List<User>> GetAllUsers() => await _context.Users.ToListAsync();
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(APIUser))]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<APIUser> GetUserById(int id)
+    public async Task<ActionResult<User>> GetUserById(int id)
     {
         var user = await _context.Users.FindAsync(id);
 
-        return user == null ? NotFound() : Ok(user);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(user);
     }
 
     [HttpPost]
@@ -43,10 +47,13 @@ public class UsersController : ControllerBase
         {
             return BadRequest();
         }
-        if (apiUser.FirstName.IsNullOrEmpty || 
-            apiUser.LastName.IsNullOrEmpty || 
-            apiUser.Username.IsNullOrEmpty || 
-            apiUser.Email.IsNullOrEmpty || 
+        if (apiUser.FirstName == null || 
+            apiUser.FirstName == "" || 
+            apiUser.LastName == null || 
+            apiUser.LastName == "" || 
+            apiUser.Username == null || apiUser.Username == "" || 
+            apiUser.Email == null || 
+            apiUser.Email == "" || 
             apiUser.Role == null)
         {
             return BadRequest();
@@ -66,7 +73,7 @@ public class UsersController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetById_IActionResult), new { id = userUserIdd }, user);
+        return StatusCode(201, user);
     }
 
     [HttpPut("{id}")]
@@ -75,14 +82,14 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateUser(int id, [FromBody] APIUpdateUser apiUser)
     {
-        if (apiUser.UserId)
+        if (apiUser.UserId!= id)
         {
             return BadRequest();
         }
 
         var user = await _context.Users.FindAsync(id);
 
-        if user == null)
+        if (user == null)
         {
             return NotFound();
         }
@@ -92,7 +99,7 @@ public class UsersController : ControllerBase
         user.Username = apiUser.Username;
         user.Email = apiUser.Email;
         
-        if (!apiUser.Password.IsNullOrEmpty)
+        if (apiUser.Password != null || apiUser.Password != "")
         {
             user.Password = SecurityUtil.HashPassword(apiUser.Password);
         }
@@ -106,7 +113,9 @@ public class UsersController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!UserExists(apiUser.UserId))
+            bool doesUserExist = await UserExists(apiUser.UserId);
+
+            if (!doesUserExist)
             {
                 return NotFound();
             }
@@ -138,7 +147,7 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-    private async bool UserExists(int id)
+    private async Task<bool> UserExists(int id)
     {
         var user = await _context.Users.FindAsync(id);
 
