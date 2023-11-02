@@ -47,7 +47,7 @@ public class AuthenticationController : ControllerBase
         apiUser.LastName = user.LastName;
         apiUser.Username = user.Username;
         apiUser.Email = user.Email;
-        apiUser.Role = user.Role;
+        apiUser.UserRoleId = user.UserRoleId;
 
         return Ok(apiUser);
     }

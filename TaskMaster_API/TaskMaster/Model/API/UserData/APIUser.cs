@@ -9,5 +9,5 @@ public class APIUser
     public string LastName { get; set; }
     public string Username { get; set; }
     public string Email { get; set; }
-    public UserRole Role { get; set; }
+    public int UserRoleId { get; set; }
 }

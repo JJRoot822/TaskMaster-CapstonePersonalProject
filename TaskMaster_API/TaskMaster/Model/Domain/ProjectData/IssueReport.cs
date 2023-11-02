@@ -7,7 +7,7 @@ using TaskMaster.Model.Domain.UserData;
 
 namespace TaskMaster.Model.Domain.ProjectData;
 
-public class APIIssueReport
+public class IssueReport
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

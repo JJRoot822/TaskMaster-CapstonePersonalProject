@@ -31,6 +31,6 @@ public class Project
 
     public List<TaskItem> TaskItems { get; set; }
     public List<BugReport> BugReports { get; set; }
-    public List<APIIssueReport> APIIssues { get; set; }
+    public List<IssueReport> APIIssues { get; set; }
     public List<TestCase> TestCases { get; set; }
 }

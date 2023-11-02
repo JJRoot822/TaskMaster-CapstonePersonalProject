@@ -18,7 +18,7 @@ public class TestCase
     public string Details { get; set; }
 
     [Required]
-    [ForeignKey("Project")]
+    [ForeignKey("User")]
     public int UserId { get; set; }
 
     [Required]

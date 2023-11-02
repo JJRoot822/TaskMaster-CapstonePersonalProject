@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskMaster.Data.Context;
 
@@ -10,9 +11,11 @@ using TaskMaster.Data.Context;
 namespace TaskMaster.Migrations
 {
     [DbContext(typeof(TaskMasterDbContext))]
-    partial class TaskMasterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231102221846_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.12");

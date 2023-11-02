@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using TaskMaster.Model.Domain.ProjectData;
+using TaskMaster.Model.Domain.ProjectData.TaskitemData;
 using TaskMaster.Model.Domain.UserData;
 
 namespace TaskMaster.Data.Context;
@@ -8,6 +10,14 @@ public class TaskMasterDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<UserRole> Roles { get; set; }
+    public DbSet<Project> Projects { get; set; }
+    public DbSet<TaskItem> TaskItems { get; set; }
+    public DbSet<TaskItemComment> TaskItemComments { get; set; }
+    public DbSet<BugReport> BugReports { get; set; }
+    public DbSet<IssueReport> IssueReports { get; set; }
+    public DbSet<TestCase> TestCases { get; set; }
+    public DbSet<Document> Documents { get; set; }
+
 
     public TaskMasterDbContext(DbContextOptions<TaskMasterDbContext> options)
         : base(options)
