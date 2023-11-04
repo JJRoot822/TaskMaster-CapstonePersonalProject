@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using TaskMaster.Model.API.UserData;
+
 namespace TaskMaster.Model.Domain.UserData;
 
 public class UserRole
@@ -15,6 +17,4 @@ public class UserRole
     public string RoleDetails { get; set; }
 
     public List<User> Users { get; set; }
-
-    public override string ToString() => string.Format("{0}, {1}, {2}", UserRoleId, RoleName, RoleDetails);
 }

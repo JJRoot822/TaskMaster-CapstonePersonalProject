@@ -1,8 +1,6 @@
-﻿using TaskMaster.Model.API.UserData;
+﻿namespace TaskMaster.Model.API.CrudOperations.IssueReport;
 
-namespace TaskMaster.Model.API.ProjectData;
-
-public class APIIssueReport
+public class APIUpdateIssueReport
 {
     public int IssueReportId { get; set; }
     public string Title { get; set; }
@@ -13,7 +11,4 @@ public class APIIssueReport
     public bool Fixed { get; set; }
     public DateTime DateResolved { get; set; }
     public string Notes { get; set; }
-    public int UserId { get; set; }
-    public int ProjectId { get; set; }
-}
 }

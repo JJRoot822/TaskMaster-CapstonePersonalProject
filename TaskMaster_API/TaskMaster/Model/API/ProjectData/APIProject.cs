@@ -1,4 +1,8 @@
-﻿namespace TaskMaster.Model.API.ProjectData;
+﻿using TaskMaster.Model.API.ProjectData.TaskItemData;
+using TaskMaster.Model.API.UserData;
+using TaskMaster.Model.Domain.ProjectData;
+
+namespace TaskMaster.Model.API.ProjectData;
 
 public class APIProject
 {

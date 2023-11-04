@@ -1,8 +1,6 @@
-﻿using TaskMaster.Model.API.UserData;
+﻿namespace TaskMaster.Model.API.CrudOperations.BugReport;
 
-namespace TaskMaster.Model.API.ProjectData;
-
-public class APIBugReport
+public class APIUpdateBugReport
 {
     public int BugReportId { get; set; }
     public string Title { get; set; }
@@ -12,6 +10,5 @@ public class APIBugReport
     public int Severity { get; set; }
     public bool Fixed { get; set; }
     public DateTime DateFixed { get; set; }
-    public int UserId { get; set; }
-    public int ProjectId { get; set; }
+    
 }

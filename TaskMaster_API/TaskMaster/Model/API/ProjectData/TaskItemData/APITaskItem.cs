@@ -1,4 +1,6 @@
-﻿namespace TaskMaster.Model.API.ProjectData.TaskItemData;
+﻿using TaskMaster.Model.API.UserData;
+
+namespace TaskMaster.Model.API.ProjectData.TaskItemData;
 
 public class APITaskItem
 {
@@ -10,6 +12,6 @@ public class APITaskItem
     public string Details { get; set; }
     public DateTime CompletedDate { get; set; }
     public DateTime DueDate { get; set; }
-    public int ProjectId { get; set; }
+    public APIProject Project { get; set; }
     public int UserId { get; set; }
 }

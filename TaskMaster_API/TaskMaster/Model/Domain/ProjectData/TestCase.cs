@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using TaskMaster.Model.API.ProjectData;
 using TaskMaster.Model.Domain.UserData;
 
 namespace TaskMaster.Model.Domain.ProjectData;
@@ -27,4 +28,6 @@ public class TestCase
 
     public Project Project { get; set; }
     public User User { get; set; }
+
+    
 }

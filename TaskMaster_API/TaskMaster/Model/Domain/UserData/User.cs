@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.EntityFrameworkCore;
 
+using TaskMaster.Model.Domain.ProjectData;
+using TaskMaster.Model.Domain.ProjectData.TaskitemData;
+
 namespace TaskMaster.Model.Domain.UserData;
 
 public class User
@@ -31,5 +34,11 @@ public class User
     public int UserRoleId { get; set; }
     public UserRole Role { set; get; }
 
-    public override string ToString() => string.Format("{0} | {1}, {2} | @{3} | {4} | {5}", UserId, LastName, FirstName, Username, Email, Role.RoleName);
+    public List<Project> Projects { get; set; }
+    public List<TaskItem> TaskItems { get; set; }
+    public List<TaskItemComment> TaskItemComments { get; set; }
+    public List<BugReport> BugReports { get; set; }
+    public List<IssueReport> IssueReports { get; set; }
+    public List<TestCase> TestCases { get; set; }
+
 }

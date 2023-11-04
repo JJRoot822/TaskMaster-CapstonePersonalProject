@@ -1,10 +1,9 @@
-﻿using TaskMaster.Model.API.UserData;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TaskMaster.Model.API.ProjectData;
+namespace TaskMaster.Model.API.CrudOperations.BugReport;
 
-public class APIBugReport
+public class APICreateBugReport
 {
-    public int BugReportId { get; set; }
     public string Title { get; set; }
     public string Details { get; set; }
     public string Notes { get; set; }

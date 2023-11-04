@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.Identity.Client;
 
+using TaskMaster.Model.API.ProjectData;
+using TaskMaster.Model.API.UserData;
 using TaskMaster.Model.Domain.UserData;
 
 namespace TaskMaster.Model.Domain.ProjectData;
@@ -44,5 +46,5 @@ public class IssueReport
     public int ProjectId { get; set; }
 
     public User User { get; set; }
-    public Project Project { get; set; }
+    public Project Project { get; set; }    
 }

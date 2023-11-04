@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\API\CrudOperations\BugReport\" />
     <Folder Include="Model\API\CrudOperations\IssueReport\" />
   </ItemGroup>
 
