@@ -1,4 +1,4 @@
-﻿namespace TaskMaster.Model.API.ProjectData;
+﻿namespace TaskMaster.Model.API.CrudOperations.Project;
 
 public class APICreateProject
 {

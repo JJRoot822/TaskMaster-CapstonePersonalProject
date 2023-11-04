@@ -16,8 +16,6 @@ public class TaskMasterDbContext : DbContext
     public DbSet<BugReport> BugReports { get; set; }
     public DbSet<IssueReport> IssueReports { get; set; }
     public DbSet<TestCase> TestCases { get; set; }
-    public DbSet<Document> Documents { get; set; }
-
 
     public TaskMasterDbContext(DbContextOptions<TaskMasterDbContext> options)
         : base(options)
