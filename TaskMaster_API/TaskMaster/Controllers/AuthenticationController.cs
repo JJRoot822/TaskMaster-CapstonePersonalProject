@@ -9,7 +9,7 @@ using TaskMaster.Data.Context;
 using TaskMaster.Model.API.Authentication;
 using TaskMaster.Model.API.UserData;
 using TaskMaster.Model.Domain.UserData;
-using TaskMaster.Security;
+using TaskMaster.Services.Security;
 
 namespace TaskMaster.Controllers;
 
@@ -37,7 +37,7 @@ public class AuthenticationController : ControllerBase
             return NotFound();
         }
 
-        if (!SecurityUtil.DoPasswordsMatch(request.Password, user.Password))
+        if (!SecurityService.DoPasswordsMatch(request.Password, user.Password))
         {
             return Unauthorized("The password you provided is invalid.");
         }

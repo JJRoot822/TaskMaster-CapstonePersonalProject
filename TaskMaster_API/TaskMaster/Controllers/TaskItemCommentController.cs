@@ -33,6 +33,7 @@ public class TaskItemCommentController : ControllerBase
     public async Task<ActionResult<APITaskItemComment>> GetTaskItemCommentById(int id)
     {
         TaskItemComment comment = await _context.TaskItemComments.FindAsync(id);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
         if (comment == null)
         {

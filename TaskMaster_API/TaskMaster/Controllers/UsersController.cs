@@ -5,7 +5,7 @@ using TaskMaster.Data.Context;
 using TaskMaster.Model.API.CrudOperations.User;
 using TaskMaster.Model.API.UserData;
 using TaskMaster.Model.Domain.UserData;
-using TaskMaster.Security;
+using TaskMaster.Services.Security;
 
 namespace TaskMaster.Controllers;
 
@@ -55,7 +55,6 @@ public class UsersController : ControllerBase
             apiUser.Username == null || apiUser.Username == "" || 
             apiUser.Email == null || 
             apiUser.Email == "" || 
-            apiUser.UserRoleId == null ||
             apiUser.UserRoleId < 1)
         {
             return BadRequest();
@@ -67,7 +66,7 @@ public class UsersController : ControllerBase
             LastName = apiUser.LastName,
             Email = apiUser.Email,
             Username = apiUser.Username,
-            Password = SecurityUtil.HashPassword(apiUser.Password),
+            Password = SecurityService.HashPassword(apiUser.Password),
             UserRoleId = apiUser.UserRoleId
         };
 
@@ -103,7 +102,7 @@ public class UsersController : ControllerBase
         
         if (apiUser.Password != null || apiUser.Password != "")
         {
-            user.Password = SecurityUtil.HashPassword(apiUser.Password);
+            user.Password = SecurityService.HashPassword(apiUser.Password);
         }
         user.UserRoleId = apiUser.UserRoleId;
 

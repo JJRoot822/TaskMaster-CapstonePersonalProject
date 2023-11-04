@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 
-namespace TaskMaster.Security;
+namespace TaskMaster.Services.Security;
 
-public static class SecurityUtil
+public static class SecurityService
 {
     public static string HashPassword(string password)
     {

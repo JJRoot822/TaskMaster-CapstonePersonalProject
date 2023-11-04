@@ -9,8 +9,6 @@ using TaskMaster.Data.Context;
 using TaskMaster.Model.API.CrudOperations.TestCase;
 using TaskMaster.Model.API.ProjectData;
 using TaskMaster.Model.Domain.ProjectData;
-using TaskMaster.Model.Domain.ProjectData;
-
 namespace TaskMaster.Controllers;
 
 [Route("api/testcase")]
