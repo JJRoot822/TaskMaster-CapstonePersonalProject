@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 
 using TaskMaster.Data.Context;
+using TaskMaster.Model.API.CrudOperations.Project;
 using TaskMaster.Model.API.ProjectData;
 using TaskMaster.Model.Domain.ProjectData;
+using TaskMaster.Model.Domain.UserData;
 
 namespace TaskMaster.Controllers;
 
@@ -32,7 +34,7 @@ public class ProjectController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<APIProject>> GetProjectById(int id)
     {
-        Project project = await _context.Projects.FindAsync(id);
+        var project = await _context.Projects.FindAsync(id);
 
         if (project == null)
         {
@@ -65,8 +67,7 @@ public class ProjectController : ControllerBase
         if (apiProject.Name == null || apiProject.Name == "" || 
             apiProject.Color == null || apiProject.Color == "" ||
             apiProject.Description == null || apiProject.Description == "" ||
-            apiProject.UserId == null || apiProject.UserId < 1 || 
-            apiProject.ReleaseDate == null)
+            apiProject.UserId < 1)
         {
             return BadRequest();
             }
@@ -87,16 +88,76 @@ public class ProjectController : ControllerBase
         return StatusCode(201, project);
     }
 
-    // PUT api/<ProjectController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateProject(int id, [FromBody] APIUpdateProject apiProject)
     {
+        if (apiProject.ProjectId != id)
+        {
+            return BadRequest();
+        }
+
+        var project = await _context.Projects.FindAsync(id);
+
+        if (project == null)
+        {
+            return NotFound();
+        }
+
+        project.Name = apiProject.Name;
+        project.Color = apiProject.Color;
+        project.Description = apiProject.Description;
+        project.ReleaseDate = apiProject.ReleaseDate;
+
+        _context.Entry(project).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            bool doesProjectExist = await ProjectExists(id);
+
+            if (!doesProjectExist)
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return NoContent();
     }
 
-    // DELETE api/<ProjectController>/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteProject(int id)
     {
+        var project = await _context.Projects.FindAsync(id);
+
+        if (project == null)
+        {
+            return NotFound();
+        }
+
+        _context.Projects.Remove(project);
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    private async Task<bool> ProjectExists(int id)
+    {
+        var project = await _context.Projects.FindAsync(id);
+
+        return project != null;
     }
 
     private List<APIProject> ToAPIProjectsList(List<Project> projects)

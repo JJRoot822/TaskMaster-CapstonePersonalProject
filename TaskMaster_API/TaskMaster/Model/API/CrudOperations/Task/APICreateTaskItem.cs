@@ -1,8 +1,7 @@
-﻿namespace TaskMaster.Model.API.ProjectData.TaskItemData;
+﻿namespace TaskMaster.Model.API.CrudOperations.Task;
 
-public class APITaskItem
+public class APICreateTaskItem
 {
-    public int TaskItemId { get; set; }
     public string Title { get; set; }
     public int Priority { get; set; }
     public bool Completed { get; set; }

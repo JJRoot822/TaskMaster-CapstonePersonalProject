@@ -1,6 +1,6 @@
 ﻿using TaskMaster.Model.Domain.UserData;
 
-namespace TaskMaster.Model.API.UserData;
+namespace TaskMaster.Model.API.CrudOperations.User;
 
 public class APICreateUser
 {
@@ -9,5 +9,5 @@ public class APICreateUser
     public string Username { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
-    public UserRole Role { get; set; }
+    public int UserRoleId { get; set; }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using TaskMaster.Data.Context;
+using TaskMaster.Model.API.CrudOperations.User;
 using TaskMaster.Model.API.UserData;
 using TaskMaster.Model.Domain.UserData;
 using TaskMaster.Security;
@@ -54,7 +55,8 @@ public class UsersController : ControllerBase
             apiUser.Username == null || apiUser.Username == "" || 
             apiUser.Email == null || 
             apiUser.Email == "" || 
-            apiUser.Role == null)
+            apiUser.UserRoleId == null ||
+            apiUser.UserRoleId < 1)
         {
             return BadRequest();
         }
@@ -66,7 +68,7 @@ public class UsersController : ControllerBase
             Email = apiUser.Email,
             Username = apiUser.Username,
             Password = SecurityUtil.HashPassword(apiUser.Password),
-            Role = apiUser.Role
+            UserRoleId = apiUser.UserRoleId
         };
 
         _context.Users.Add(user);
@@ -103,7 +105,7 @@ public class UsersController : ControllerBase
         {
             user.Password = SecurityUtil.HashPassword(apiUser.Password);
         }
-        user.Role = apiUser.Role;
+        user.UserRoleId = apiUser.UserRoleId;
 
         _context.Entry(user).State = EntityState.Modified;
 
