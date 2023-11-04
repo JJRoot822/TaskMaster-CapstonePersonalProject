@@ -16,4 +16,3 @@ public class APIIssueReport
     public int UserId { get; set; }
     public int ProjectId { get; set; }
 }
-}
