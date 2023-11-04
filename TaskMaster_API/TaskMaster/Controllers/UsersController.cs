@@ -21,7 +21,13 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<User>> GetAllUsers() => await _context.Users.ToListAsync();
+    [Route("all")]
+    public async Task<List<APIUser>> GetAllUsers()
+    {
+        List<User> users = await _context.Users.ToListAsync();
+
+        return ToAPIUsersList(users);
+    }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(APIUser))]
@@ -29,13 +35,21 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<User>> GetUserById(int id)
     {
         var user = await _context.Users.FindAsync(id);
+        var apiUser = new APIUser();
 
         if (user == null)
         {
             return NotFound();
         }
 
-        return Ok(user);
+        apiUser.UserId = user.UserId;
+        apiUser.FirstName = user.FirstName;
+        apiUser.LastName = user.LastName;
+        apiUser.Username = user.Username;
+        apiUser.Email = user.Email;
+        apiUser.UserRoleId = user.UserRoleId;
+
+        return Ok(apiUser);
     }
 
     [HttpPost]
@@ -74,7 +88,15 @@ public class UsersController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return StatusCode(201, user);
+        return StatusCode(201, new APIUser
+        {
+            UserId = user.UserId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Username = user.Username,
+            Email = user.Email,
+            UserRoleId = user.UserRoleId
+        });
     }
 
     [HttpPut("{id}")]
@@ -153,5 +175,25 @@ public class UsersController : ControllerBase
         var user = await _context.Users.FindAsync(id);
 
         return user != null;
+    }
+
+    private List<APIUser> ToAPIUsersList(List<User> users)
+    {
+        List<APIUser> apiUsers = new List<APIUser>();
+
+        foreach (var user in users)
+        {
+            APIUser apiUser = new APIUser();
+            apiUser.UserId = user.UserId;
+            apiUser.FirstName = user.FirstName;
+            apiUser.LastName = user.LastName;
+            apiUser.Username = user.Username;
+            apiUser.Email = user.Email;
+            apiUser.UserRoleId = user.UserRoleId;
+
+            apiUsers.Add(apiUser);
+        }
+
+        return apiUsers;
     }
 }
