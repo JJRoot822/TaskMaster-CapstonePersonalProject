@@ -18,7 +18,7 @@ public class Project
     [Required]
     public string Color { get; set; }
     
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [Required]
     public DateTime ReleaseDate { get; set; }

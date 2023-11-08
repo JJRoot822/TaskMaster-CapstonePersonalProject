@@ -27,7 +27,7 @@ public class BugReport
     [Required]
     public bool Fixed { get; set; }
     
-    public DateTime DateFixed { get; set; }
+    public DateTime? DateFixed { get; set; }
 
     [Required]
     [ForeignKey("User")]

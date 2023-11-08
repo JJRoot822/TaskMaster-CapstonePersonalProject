@@ -36,7 +36,6 @@ public class User
 
     public List<Project> Projects { get; set; }
     public List<TaskItem> TaskItems { get; set; }
-    public List<TaskItemComment> TaskItemComments { get; set; }
     public List<BugReport> BugReports { get; set; }
     public List<IssueReport> IssueReports { get; set; }
     public List<TestCase> TestCases { get; set; }

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using TaskMaster.Model.API.ProjectData;
 using TaskMaster.Model.Domain.UserData;
 
 namespace TaskMaster.Model.Domain.ProjectData;

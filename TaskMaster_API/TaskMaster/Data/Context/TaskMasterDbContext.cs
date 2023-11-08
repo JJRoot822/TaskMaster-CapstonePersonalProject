@@ -12,7 +12,6 @@ public class TaskMasterDbContext : DbContext
     public DbSet<UserRole> Roles { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<TaskItem> TaskItems { get; set; }
-    public DbSet<TaskItemComment> TaskItemComments { get; set; }
     public DbSet<BugReport> BugReports { get; set; }
     public DbSet<IssueReport> IssueReports { get; set; }
     public DbSet<TestCase> TestCases { get; set; }

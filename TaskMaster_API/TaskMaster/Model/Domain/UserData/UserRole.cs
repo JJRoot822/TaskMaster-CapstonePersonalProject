@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using TaskMaster.Model.API.UserData;
-
 namespace TaskMaster.Model.Domain.UserData;
 
 public class UserRole

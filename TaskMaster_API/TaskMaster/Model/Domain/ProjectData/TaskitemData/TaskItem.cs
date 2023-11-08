@@ -27,7 +27,7 @@ public class TaskItem
     [Required]
     public DateTime DueDate { get; set; }
 
-    public DateTime CompletedDate { get; set; }
+    public DateTime? CompletedDate { get; set; }
 
     [Required]
     [ForeignKey("Project")]
@@ -39,5 +39,4 @@ public class TaskItem
 
     public User User { get; set; }
     public Project Project { get; set; }
-    public List<TaskItemComment> TaskItemComments { get; set; }
 }
