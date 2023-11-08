@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using TaskMaster.Data;
 using TaskMaster.Data.Context;
 using TaskMaster.Model.API;
+using TaskMaster.Model.API.Authentication;
 using TaskMaster.Model.API.Create;
 using TaskMaster.Model.API.Update;
 using TaskMaster.Model.Domain.UserData;
@@ -21,6 +22,27 @@ public class UserController : ControllerBase
     public UserController(TaskMasterDbContext context)
     {
         _context = context;
+    }
+
+    [HttpPost]
+    [Route("authenticate")]
+    public async Task<IActionResult> AuthenticateUser([FromBody] APIAuthenticationCredentials request)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username ==request.Username);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        bool doPasswordsMatch = SecurityService.DoPasswordsMatch(request.Password, user.Password);
+
+        if (!doPasswordsMatch)
+        {
+            return Unauthorized();
+        }
+
+        return Ok(ModelConverter.ToAPIUser(_context, user));
     }
 
     [HttpGet]
