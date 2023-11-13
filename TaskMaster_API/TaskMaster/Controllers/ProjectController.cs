@@ -33,7 +33,7 @@ public class ProjectController : ControllerBase
         return ModelConverter.ToListOfAPIProjects(_context, projects);
     }
 
-    [HttpGet("}id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<APIProject>> GetProjectById(int id)
     {
         var project = await _context.Projects.FindAsync(id);
@@ -123,25 +123,18 @@ public class ProjectController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProject(int id)
     {
-        bool doesProjectExist = await ProjectExists(id)
-            ;
-        if (doesProjectExist)
+        var project = await _context.Projects.FindAsync(id);
+
+        if (project == null) 
         {
             return NotFound();
         }
 
-        var project = await _context.Projects.FindAsync(id);
-
         _context.Projects.Remove(project);
 
+        await _context.SaveChangesAsync();
+
         return NoContent();
-    }
-
-    private async Task<bool>UserExists(int id)
-    {
-        var user = await _context.Users.FindAsync(id);
-
-        return user != null;
     }
 
     private async Task<bool> ProjectExists(int id)

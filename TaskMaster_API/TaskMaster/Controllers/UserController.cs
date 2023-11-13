@@ -65,7 +65,7 @@ public class UserController : ControllerBase
         return Ok(ModelConverter.ToAPIUser(_context, user));
     }
 
-    [HttpGet]
+    [HttpGet("{username}")]
     public async Task<ActionResult<APIUser>> GetUserByUsername(string username)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
