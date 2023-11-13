@@ -1,9 +1,7 @@
-﻿namespace TaskMaster.Model.API;
+﻿namespace TaskMaster.Model.API.Create;
 
-public class APITestCase
+public class APICreateTestCase
 {
-    public int TestCaseId { get; set; }
-
     public string Title { get; set; }
 
     public string Details { get; set; }

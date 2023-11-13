@@ -36,12 +36,12 @@ public class ProjectController : ControllerBase
     [HttpGet("}id}")]
     public async Task<ActionResult<APIProject>> GetProjectById(int id)
     {
-        if (!ProjectExists(id))
+        var project = await _context.Projects.FindAsync(id);
+
+        if (project == null)
         {
             return NotFound();
         }
-
-        var project = await _context.Projects.FindAsync(id);
 
         return Ok(ModelConverter.ToAPIProject(_context, project));
     }
@@ -49,14 +49,16 @@ public class ProjectController : ControllerBase
     [HttpGet("user/{id}")]
     public async Task<ActionResult<List<APIProject>>> GetProjectsByUser(int id)
     {
-        if (!UserExists(id))
+        var user = await _context.Users.FindAsync(id);
+
+        if (user == null)
         {
             return NotFound();
         }
 
-        var projects = await _context.Projects.Where(p => p.UserId).ToListAsync();
+        var projects = await _context.Projects.Where(p => p.UserId == id).ToListAsync();
 
-        return Ok(projects);
+        return Ok(ModelConverter.ToListOfAPIProjects(_context, projects));
     }
 
     [HttpPost]
@@ -70,10 +72,10 @@ public class ProjectController : ControllerBase
         project.ReleaseDate = request.ReleaseDate;
         project.UserId = request.UserId;
 
-        await _contest.Projects.AddAsync(project);
+        await _context.Projects.AddAsync(project);
         await _context.SaveChangesAsync();
 
-        return StatusCode(201, ModelConverter.ToAPIProject(_context, project);
+        return StatusCode(201, ModelConverter.ToAPIProject(_context, project));
     }
 
     [HttpPatch("update/{id}")]
@@ -84,13 +86,13 @@ public class ProjectController : ControllerBase
             return BadRequest();
         }
 
-        if (!ProjectExists(id))
+        var project = await _context.Projects.FindAsync(id);
+
+        if (project == null)
         {
             return NotFound();
         }
 
-        var project = await _context.Projects.FindAsync(request.ProjectId);
-        project.Name = request.Name;
         project.Color = request.Color;
         project.Description = request.Description;
         project.ReleaseDate = request.ReleaseDate;
@@ -103,9 +105,11 @@ public class ProjectController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!ProjectExists(id))
+            bool doesProjectExist = await ProjectExists(id);
+
+            if (!doesProjectExist)
             {
-                return NotFound()
+                return NotFound();
             }
             else
             {
@@ -119,7 +123,9 @@ public class ProjectController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProject(int id)
     {
-        if (!ProjectExists(id))
+        bool doesProjectExist = await ProjectExists(id)
+            ;
+        if (doesProjectExist)
         {
             return NotFound();
         }
@@ -131,14 +137,14 @@ public class ProjectController : ControllerBase
         return NoContent();
     }
 
-    private async boolUserExists(int id)
+    private async Task<bool>UserExists(int id)
     {
         var user = await _context.Users.FindAsync(id);
 
         return user != null;
     }
 
-    private async bool ProjectExists(int id)
+    private async Task<bool> ProjectExists(int id)
     {
         var project = await _context.Projects.FindAsync(id);
 
