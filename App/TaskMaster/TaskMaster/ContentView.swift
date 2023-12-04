@@ -31,10 +31,6 @@ struct ContentView: View {
     }
 }
 
-
-
-
-
 struct LoginScreen: View {
     var body: some View {
         Text("")

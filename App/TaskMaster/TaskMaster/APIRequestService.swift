@@ -20,6 +20,8 @@ enum APIError: Error {
     case decodingError(Error)
     case badRequest
     case notFound
+    case unauthorized
+    
 }
 
 class APIRequestService {
@@ -60,17 +62,20 @@ class APIRequestService {
                 throw APIError.invalidResponse
             }
             
-            if httpResponse.statusCode == 201 {
+            switch httpResponse.statusCode {
+            case 401:
+                throw APIError.unauthorized
+            case 201:
                 if data.isEmpty {
                     return nil
                 } else {
                     let decoder = JSONDecoder()
                     return try decoder.decode(R.self, from: data)
                 }
-            } else if httpResponse.statusCode == 400 {
+            case 400:
                 throw APIError.badRequest
-            } else {
-                throw APIError.requestFailed(NSError(domain: "", code: httpResponse.statusCode, userInfo: nil))
+            default:
+                throw APIError.requestFailed(<#T##Error#>)
             }
         } catch {
             throw APIError.requestFailed(error)
@@ -102,6 +107,8 @@ class APIRequestService {
                 
             case 400:
                 throw APIError.badRequest
+            case 401:
+                throw APIError.unauthorized
             default:
                 throw APIError.requestFailed(NSError(domain: "", code: httpResponse.statusCode, userInfo: nil))
             }

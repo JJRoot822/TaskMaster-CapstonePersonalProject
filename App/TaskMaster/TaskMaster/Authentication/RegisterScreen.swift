@@ -60,7 +60,15 @@ struct RegisterScreen: View {
         
         Task {
             do {
-                try await createAccount(firstName: firstName, lastName: lastName, username: username, email: email, password: password)
+                try await createAccount(
+                    firstName: firstName,
+                    lastName: lastName,
+                    username: username,
+                    email: email,
+                    password: password
+                )
+                
+                onSuccessfulRegistration()
             } catch {
                 isShowingAccountCreationError.toggle()
             }

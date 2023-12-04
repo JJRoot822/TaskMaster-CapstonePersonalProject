@@ -21,7 +21,9 @@ struct AuthenticationScreen: View {
         if screen == .login {
             LoginScreen()
         } else {
-            RegisterScreen()
+            RegisterScreen() {
+                screen = .login
+            }
         }
     }
 }

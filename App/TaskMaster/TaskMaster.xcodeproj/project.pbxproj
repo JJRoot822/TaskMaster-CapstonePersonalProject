@@ -18,6 +18,12 @@
 		03358D742B1D77D100CBC4ED /* AuthenticationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D732B1D77D100CBC4ED /* AuthenticationScreen.swift */; };
 		03358D762B1D78CB00CBC4ED /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D752B1D78CB00CBC4ED /* RegisterScreen.swift */; };
 		03358D792B1D799A00CBC4ED /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D782B1D799A00CBC4ED /* PasswordField.swift */; };
+		03602ACA2B1DC79F008212E8 /* ApplicationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03602AC92B1DC79F008212E8 /* ApplicationUser.swift */; };
+		03602ACC2B1DCC27008212E8 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03602ACB2B1DCC27008212E8 /* Project.swift */; };
+		03602ACE2B1DCE5F008212E8 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03602ACD2B1DCE5F008212E8 /* TaskItem.swift */; };
+		03602AD02B1DD020008212E8 /* IssueReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03602ACF2B1DD020008212E8 /* IssueReport.swift */; };
+		03602AD22B1DD14B008212E8 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03602AD12B1DD14B008212E8 /* TestCase.swift */; };
+		03602AD42B1DD1F3008212E8 /* BugReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03602AD32B1DD1F3008212E8 /* BugReport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		03358D732B1D77D100CBC4ED /* AuthenticationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationScreen.swift; sourceTree = "<group>"; };
 		03358D752B1D78CB00CBC4ED /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		03358D782B1D799A00CBC4ED /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
+		03602AC92B1DC79F008212E8 /* ApplicationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUser.swift; sourceTree = "<group>"; };
+		03602ACB2B1DCC27008212E8 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		03602ACD2B1DCE5F008212E8 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		03602ACF2B1DD020008212E8 /* IssueReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReport.swift; sourceTree = "<group>"; };
+		03602AD12B1DD14B008212E8 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
+		03602AD32B1DD1F3008212E8 /* BugReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +104,12 @@
 			isa = PBXGroup;
 			children = (
 				03358D6C2B170BE900CBC4ED /* TMCreateUser.swift */,
+				03602AC92B1DC79F008212E8 /* ApplicationUser.swift */,
+				03602ACB2B1DCC27008212E8 /* Project.swift */,
+				03602ACD2B1DCE5F008212E8 /* TaskItem.swift */,
+				03602ACF2B1DD020008212E8 /* IssueReport.swift */,
+				03602AD12B1DD14B008212E8 /* TestCase.swift */,
+				03602AD32B1DD1F3008212E8 /* BugReport.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,9 +205,15 @@
 				03358D5D2B16B16D00CBC4ED /* ContentView.swift in Sources */,
 				03358D722B1D776D00CBC4ED /* AuthenticationScreenType.swift in Sources */,
 				03358D742B1D77D100CBC4ED /* AuthenticationScreen.swift in Sources */,
+				03602AD42B1DD1F3008212E8 /* BugReport.swift in Sources */,
+				03602ACA2B1DC79F008212E8 /* ApplicationUser.swift in Sources */,
 				03358D6D2B170BE900CBC4ED /* TMCreateUser.swift in Sources */,
 				03358D792B1D799A00CBC4ED /* PasswordField.swift in Sources */,
 				03358D762B1D78CB00CBC4ED /* RegisterScreen.swift in Sources */,
+				03602AD02B1DD020008212E8 /* IssueReport.swift in Sources */,
+				03602ACE2B1DCE5F008212E8 /* TaskItem.swift in Sources */,
+				03602AD22B1DD14B008212E8 /* TestCase.swift in Sources */,
+				03602ACC2B1DCC27008212E8 /* Project.swift in Sources */,
 				03358D5F2B16B16D00CBC4ED /* Item.swift in Sources */,
 				03358D6F2B170E6200CBC4ED /* APIRequestService.swift in Sources */,
 				03358D5B2B16B16D00CBC4ED /* TaskMasterApp.swift in Sources */,
