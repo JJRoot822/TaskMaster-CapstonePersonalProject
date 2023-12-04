@@ -12,6 +12,12 @@
 		03358D5F2B16B16D00CBC4ED /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D5E2B16B16D00CBC4ED /* Item.swift */; };
 		03358D612B16B16E00CBC4ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03358D602B16B16E00CBC4ED /* Assets.xcassets */; };
 		03358D652B16B16E00CBC4ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03358D642B16B16E00CBC4ED /* Preview Assets.xcassets */; };
+		03358D6D2B170BE900CBC4ED /* TMCreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D6C2B170BE900CBC4ED /* TMCreateUser.swift */; };
+		03358D6F2B170E6200CBC4ED /* APIRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D6E2B170E6200CBC4ED /* APIRequestService.swift */; };
+		03358D722B1D776D00CBC4ED /* AuthenticationScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D712B1D776D00CBC4ED /* AuthenticationScreenType.swift */; };
+		03358D742B1D77D100CBC4ED /* AuthenticationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D732B1D77D100CBC4ED /* AuthenticationScreen.swift */; };
+		03358D762B1D78CB00CBC4ED /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D752B1D78CB00CBC4ED /* RegisterScreen.swift */; };
+		03358D792B1D799A00CBC4ED /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03358D782B1D799A00CBC4ED /* PasswordField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		03358D602B16B16E00CBC4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03358D622B16B16E00CBC4ED /* TaskMaster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskMaster.entitlements; sourceTree = "<group>"; };
 		03358D642B16B16E00CBC4ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		03358D6C2B170BE900CBC4ED /* TMCreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMCreateUser.swift; sourceTree = "<group>"; };
+		03358D6E2B170E6200CBC4ED /* APIRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestService.swift; sourceTree = "<group>"; };
+		03358D712B1D776D00CBC4ED /* AuthenticationScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationScreenType.swift; sourceTree = "<group>"; };
+		03358D732B1D77D100CBC4ED /* AuthenticationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationScreen.swift; sourceTree = "<group>"; };
+		03358D752B1D78CB00CBC4ED /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
+		03358D782B1D799A00CBC4ED /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +66,16 @@
 		03358D592B16B16D00CBC4ED /* TaskMaster */ = {
 			isa = PBXGroup;
 			children = (
+				03358D772B1D795B00CBC4ED /* Components */,
+				03358D702B1D773700CBC4ED /* Authentication */,
+				03358D6B2B1709A800CBC4ED /* Models */,
 				03358D5A2B16B16D00CBC4ED /* TaskMasterApp.swift */,
 				03358D5C2B16B16D00CBC4ED /* ContentView.swift */,
 				03358D5E2B16B16D00CBC4ED /* Item.swift */,
 				03358D602B16B16E00CBC4ED /* Assets.xcassets */,
 				03358D622B16B16E00CBC4ED /* TaskMaster.entitlements */,
 				03358D632B16B16E00CBC4ED /* Preview Content */,
+				03358D6E2B170E6200CBC4ED /* APIRequestService.swift */,
 			);
 			path = TaskMaster;
 			sourceTree = "<group>";
@@ -70,6 +86,32 @@
 				03358D642B16B16E00CBC4ED /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		03358D6B2B1709A800CBC4ED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03358D6C2B170BE900CBC4ED /* TMCreateUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		03358D702B1D773700CBC4ED /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				03358D712B1D776D00CBC4ED /* AuthenticationScreenType.swift */,
+				03358D732B1D77D100CBC4ED /* AuthenticationScreen.swift */,
+				03358D752B1D78CB00CBC4ED /* RegisterScreen.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		03358D772B1D795B00CBC4ED /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				03358D782B1D799A00CBC4ED /* PasswordField.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +185,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				03358D5D2B16B16D00CBC4ED /* ContentView.swift in Sources */,
+				03358D722B1D776D00CBC4ED /* AuthenticationScreenType.swift in Sources */,
+				03358D742B1D77D100CBC4ED /* AuthenticationScreen.swift in Sources */,
+				03358D6D2B170BE900CBC4ED /* TMCreateUser.swift in Sources */,
+				03358D792B1D799A00CBC4ED /* PasswordField.swift in Sources */,
+				03358D762B1D78CB00CBC4ED /* RegisterScreen.swift in Sources */,
 				03358D5F2B16B16D00CBC4ED /* Item.swift in Sources */,
+				03358D6F2B170E6200CBC4ED /* APIRequestService.swift in Sources */,
 				03358D5B2B16B16D00CBC4ED /* TaskMasterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
