@@ -5,19 +5,35 @@
 //  Created by Joshua Root on 12/4/23.
 //
 
-import SwiftData
+import Foundation
 
-@model
-class IssueReport: Codable {
+struct IssueReport: Codable, Identifiable {
+    var id: UUID?
     var issueReportId: Int
     var title: String
     var priority: Int
     var severity: Int
     var issueType: Int
-    var notes: String
+    var details: String
     var fixed: Bool
     var dateResolved: Date?
-    var details: String
-    var projectId: Int
+    var notes: String
     var userId: Int
+    var projectId: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case issueReportId
+        case title
+        case priority
+        case severity
+        case issueType
+        case details
+        case fixed
+        case dateResolved
+        case notes
+        case userId
+        case projectId
+    }
 }
+

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AuthenticationScreen: View {
+    @Environment(\.dismiss) var dismiss
+    
     @State private var screen: AuthenticationScreenType = .login
     
     var body: some View {
@@ -19,11 +21,9 @@ struct AuthenticationScreen: View {
         .labelsHidden()
         
         if screen == .login {
-            LoginScreen()
+            LoginScreen() { /* ... */ }
         } else {
-            RegisterScreen() {
-                screen = .login
-            }
+            RegisterScreen() { /* ... */ }
         }
     }
 }

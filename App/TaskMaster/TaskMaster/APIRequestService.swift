@@ -10,18 +10,36 @@ import Foundation
 enum HTTPMethod: String {
     case post = "POST"
     case patch = "PATCH"
-    case  delete = "DELETE""
+    case delete = "DELETE"
 }
 
 enum APIError: Error {
     case invalidURL
-    case requestFailed(Error)
+    case requestFailed
     case invalidResponse
-    case decodingError(Error)
+    case decodingError
     case badRequest
     case notFound
     case unauthorized
     
+    var localizedDescription: String {
+        switch self {
+        case .badRequest:
+            "The Server couldn't process the request. It was most likely due to not having enough data, the correct data, or something internally doesn't match."
+        case .decodingError:
+            "The response from the server seems to be in an invalid format. Please report this issue to the developer of the app."
+        case .invalidResponse:
+            "The response provided by the server as a result of your request was invalid."
+        case .invalidURL:
+            "The URL the request was sent to is not a valid API endpoint. The URL was either not typed correctly, or the endpoint simply doesn't exist."
+        case .notFound:
+            "The object of the request could not be found."
+        case .unauthorized:
+            "Authentication Failed"
+        case .requestFailed:
+            "The request failed for some other unknown reason."
+        }
+    }
 }
 
 class APIRequestService {
@@ -40,7 +58,7 @@ class APIRequestService {
             let result = try decoder.decode(T.self, from: data)
             return result
         } catch {
-            throw APIError.requestFailed(error)
+            throw APIError.requestFailed
         }
     }
 
@@ -75,10 +93,10 @@ class APIRequestService {
             case 400:
                 throw APIError.badRequest
             default:
-                throw APIError.requestFailed(<#T##Error#>)
+                throw APIError.requestFailed
             }
         } catch {
-            throw APIError.requestFailed(error)
+            throw APIError.requestFailed
         }
     }
     
@@ -110,10 +128,10 @@ class APIRequestService {
             case 401:
                 throw APIError.unauthorized
             default:
-                throw APIError.requestFailed(NSError(domain: "", code: httpResponse.statusCode, userInfo: nil))
+                throw APIError.requestFailed
             }
         } catch {
-            throw APIError.requestFailed(error)
+            throw APIError.requestFailed
         }
     }
 
@@ -145,10 +163,10 @@ class APIRequestService {
             case 404:
                 throw APIError.notFound
             default:
-                throw APIError.requestFailed(NSError(domain: "", code: httpResponse.statusCode, userInfo: nil))
+                throw APIError.requestFailed
             }
         } catch {
-            throw APIError.requestFailed(error)
+            throw APIError.requestFailed
         }
     }
 
@@ -175,10 +193,10 @@ class APIRequestService {
                 // Not Found - Object not found
                 throw APIError.notFound
             default:
-                throw APIError.requestFailed(NSError(domain: "", code: httpResponse.statusCode, userInfo: nil))
+                throw APIError.requestFailed
             }
         } catch {
-            throw APIError.requestFailed(error)
+            throw APIError.requestFailed
         }
     }
 }

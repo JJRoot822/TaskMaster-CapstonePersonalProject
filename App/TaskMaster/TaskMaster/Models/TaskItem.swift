@@ -5,10 +5,10 @@
 //  Created by Joshua Root on 12/4/23.
 //
 
-import SwiftData
+import Foundation
 
-@Model
-class TaskItem: Codable {
+struct TaskItem: Codable, Identifiable {
+    var id: UUID?
     var taskItemId: Int
     var title: String
     var priority: Int
@@ -19,4 +19,19 @@ class TaskItem: Codable {
     var completedDate: Date?
     var projectId: Int
     var userId: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case taskItemId
+        case title
+        case priority
+        case completed
+        case notes
+        case details
+        case dueDate
+        case completedDate
+        case projectId
+        case userId
+    }
 }
+

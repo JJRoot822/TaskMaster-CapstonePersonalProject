@@ -5,10 +5,10 @@
 //  Created by Joshua Root on 12/4/23.
 //
 
-import SwiftData
+import Foundation
 
-@Model
-class BugReport: Codable {
+struct BugReport: Codable, Identifiable {
+    var id: UUID?
     var bugReportId: Int
     var title: String
     var details: String
@@ -19,4 +19,19 @@ class BugReport: Codable {
     var dateFixed: Date?
     var userId: Int
     var projectId: Int
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case bugReportId
+        case title
+        case details
+        case notes
+        case priority
+        case severity
+        case fixed
+        case dateFixed
+        case userId
+        case projectId
+    }
 }
+
