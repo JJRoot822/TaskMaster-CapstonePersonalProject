@@ -5,11 +5,11 @@
 //  Created by Joshua Root on 12/4/23.
 //
 
+import SwiftData
 import Foundation
 
-struct IssueReport: Codable, Identifiable {
-    var id: UUID?
-    var issueReportId: Int
+@Model
+class IssueReport {
     var title: String
     var priority: Int
     var severity: Int
@@ -18,22 +18,19 @@ struct IssueReport: Codable, Identifiable {
     var fixed: Bool
     var dateResolved: Date?
     var notes: String
-    var userId: Int
-    var projectId: Int
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case issueReportId
-        case title
-        case priority
-        case severity
-        case issueType
-        case details
-        case fixed
-        case dateResolved
-        case notes
-        case userId
-        case projectId
-    }
-}
+    var project: Project
 
+    init(title: String, priority: Int, severity: Int, issueType: Int, details: String, fixed: Bool, dateResolved: Date?, notes: String, project: Project) {
+        self.title = title
+        self.priority = priority
+        self.severity = severity
+        self.issueType = issueType
+        self.details = details
+        self.fixed = fixed
+        self.dateResolved = dateResolved
+        self.notes = notes
+        self.project = project
+    }
+
+    
+}

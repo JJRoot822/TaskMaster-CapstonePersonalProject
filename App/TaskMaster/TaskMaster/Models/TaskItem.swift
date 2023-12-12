@@ -5,11 +5,11 @@
 //  Created by Joshua Root on 12/4/23.
 //
 
+import SwiftData
 import Foundation
 
-struct TaskItem: Codable, Identifiable {
-    var id: UUID?
-    var taskItemId: Int
+@Model
+class TaskItem {
     var title: String
     var priority: Int
     var completed: Bool
@@ -17,21 +17,20 @@ struct TaskItem: Codable, Identifiable {
     var details: String
     var dueDate: Date
     var completedDate: Date?
-    var projectId: Int
-    var userId: Int
+    var project: Project
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case taskItemId
-        case title
-        case priority
-        case completed
-        case notes
-        case details
-        case dueDate
-        case completedDate
-        case projectId
-        case userId
+    
+    
+    init(title: String, priority: Int, completed: Bool, notes: String, details: String, dueDate: Date, completedDate: Date?, project: Project) {
+        self.title = title
+        self.priority = priority
+        self.completed = completed
+        self.notes = notes
+        self.details = details
+        self.dueDate = dueDate
+        self.completedDate = completedDate
+        self.project = project
     }
+    
+    
 }
-

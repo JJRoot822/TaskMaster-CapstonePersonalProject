@@ -5,24 +5,21 @@
 //  Created by Joshua Root on 12/4/23.
 //
 
+import SwiftData
 import Foundation
 
-struct TestCase: Codable, Identifiable {
-    var id: UUID?
-    var testCaseId: Int
+@Model
+class TestCase {
     var title: String
     var details: String
-    var userId: Int
-    var projectId: Int
+    var project: Project
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case testCaseId
-        case title
-        case details
-        case userId
-        case projectId
+    init(title: String, details: String, project: Project) {
+        self.testCaseId = testCaseId
+        self.title = title
+        self.details = details
+        self.project = project
     }
-}
 
-s
+    
+}
